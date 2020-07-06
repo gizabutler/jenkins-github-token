@@ -1,7 +1,13 @@
 @Library('jenkins-pipelines')_
 pipeline {
-  agent any
-  podTemplate 'centos'
+  agent kubernetes {
+    containerTemplate {
+        name 'centos'
+        image 'centos:7'
+        ttyEnabled true
+        command 'cat'
+      }
+  }
   stages {
     stage('test groovy script') {
       steps {
