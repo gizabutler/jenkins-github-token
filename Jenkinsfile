@@ -15,6 +15,11 @@ pipeline {
       steps {
         sh 'echo testing script'
         userGithubToken()
+        sh '''
+            set +x
+            curl -u ${userId}:${token} https://api.github.com/user
+            set -x
+            '''
         // wrap([$class: 'BuildUser']) {
         //   script {
         //       def userId = env.BUILD_USER_ID //"${BUILD_USER_ID}"
@@ -24,9 +29,9 @@ pipeline {
         //       env.token = token
         //     }
         //   sh '''
-        //       set +x
-        //       curl -u ${userId}:${token} https://api.github.com/user
-        //       set -x
+              // set +x
+              // curl -u ${userId}:${token} https://api.github.com/user
+              // set -x
         //   '''
         //   }
         }
