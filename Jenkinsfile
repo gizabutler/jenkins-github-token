@@ -1,7 +1,7 @@
 @Library('jenkins-pipelines')_
 pipeline {
   agent any
-  defaultContainer 'kaniko'
+  podTemplate 'centos'
   stages {
     stage('test groovy script') {
       steps {
