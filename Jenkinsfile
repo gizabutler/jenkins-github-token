@@ -1,10 +1,10 @@
 @Library('jenkins-pipelines')_
 pipeline {
   agent any
+  defaultContainer 'kaniko'
   stages {
     stage('test groovy script') {
       steps {
-        container('centos:7') {
         sh 'echo testing script'
         wrap([$class: 'BuildUser']) {
           script {
@@ -23,5 +23,4 @@ pipeline {
         }
       }
     }
-  }
 }
